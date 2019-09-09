@@ -1,0 +1,21 @@
+---
+- name: Create RG & VNET
+
+  hosts: localhost
+  connection: local
+
+  tasks: 
+
+    - name: Create Resource Group
+      azure_rm_resourcegroup:
+       name: scaleCloud
+       location: southcentralus
+       tags: 
+        usage: dev
+
+    - name: Create VNET
+      azure_rm_virtualnetwork:
+        resource_group: scaleCloud
+        name: scaleNet
+        address_prefixes: "10.20.0.1/16"           
+
