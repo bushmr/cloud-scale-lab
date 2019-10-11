@@ -17,5 +17,10 @@
       azure_rm_virtualnetwork:
         resource_group: scaleCloud
         name: scaleNet
-        address_prefixes: "10.20.0.1/16"           
-
+        address_prefixes: "10.20.0.0/16"           
+    - name: Create Subnet
+      azure_rm_subnet: 
+        resource_group: scaleCloud
+        virtual_network_name: scaleNet
+        name: fesub
+        address_prefix_cidr: "10.20.0.0/24"
