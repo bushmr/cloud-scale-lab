@@ -1,0 +1,32 @@
+---
+- name: Create VM Playbook
+  
+  hosts: localhost
+  connection: localhost
+
+  tasks: 
+
+  - name: Create VM with proper params
+    azure_rm_virtualmachine:
+      resource_group: scaleCloud
+      name: node1
+      vm_size: Standard_D2s_v3
+      os_type: Linux
+      managed_disk_type: StandardSSD_LRS
+      admin_username: markbu
+      ssh_password_enabled: false
+      ssh_public_keys: 
+        - path: /home/markbu/.ssh/authorized_keys
+          key_data: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCowFARxq5G4dH00uVFbaGLMsu4TWWsmJ9rntX1x+fJzHswco1jwGNtbTqc43WSF3fJtIul47tQamGq67usdzAzmADrKozsfZqX3Enb7e8GzquP9lYOwiKMAwSVjksRxDg9lHHQ1CIknfaamObnTuYT0CbjbOGE0B240avn8GzfalKcy/WDX8USgXRv/joxJN0oJoq0881hC/1WJRxV3lCGyRw/j9LTDvnDecjhI0yP043UBLuWH+n4SwGbd0hHvSpEQ8m3xA7coRPYiougyywGOXw0+KHdBiJv3rck62Ru+X9nPGoszwqucHJvQ7deHdoMBMtMEuID6y7I5lmv/vCr star\markbu@bushm7480
+      image: 
+         offer: CentOS
+         publisher: OpenLogic
+         sku: 7.7
+         version: latest
+      data_disks: 
+        - lun: 0 
+          disk_size_gb: 32
+          managed_disk_type: StandardSSD_LRS
+        - lun: 1
+          disk_size_gb: 32
+          managed_disk_type: StandardSSD_LRS

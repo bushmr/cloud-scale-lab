@@ -1,0 +1,15 @@
+---
+
+- name: Remove VM 
+
+  hosts: localhost
+  connection: localhost
+
+  tasks: 
+   
+  - name: Delete VM and all related resources
+    azure_rm_virtualmachine: 
+     resource_group: scaleCloud
+     name: node1
+     remove_on_absent: all_autocreated
+     state: absent
