@@ -11,5 +11,5 @@
     azure_rm_virtualmachine: 
      resource_group: scaleCloud
      name: node1
-     remove_on_absent: all_autocreated
+     remove_on_absent: all
      state: absent

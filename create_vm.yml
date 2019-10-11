@@ -6,6 +6,17 @@
 
   tasks: 
 
+  - name: Create NIC for VM
+    azure_rm_networkinterface:
+      name: nic001
+      resource_group: scaleCloud
+      virtual_network: scaleNet
+      subnet_name: fesub
+      create_with_security_group: True
+      ip_configurations:
+        - name: ipconfig1
+          primary: True
+
   - name: Create VM with proper params
     azure_rm_virtualmachine:
       resource_group: scaleCloud
@@ -13,6 +24,7 @@
       vm_size: Standard_D2s_v3
       os_type: Linux
       managed_disk_type: StandardSSD_LRS
+      network_interfaces: nic001
       admin_username: markbu
       ssh_password_enabled: false
       ssh_public_keys: 
